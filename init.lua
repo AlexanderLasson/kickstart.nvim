@@ -25,6 +25,7 @@ What is Kickstart?
   Kickstart.nvim is *not* a distribution.
 
   Kickstart.nvim is a starting point for your own configuration.
+
     The goal is that you can read every line of code, top-to-bottom, understand
     what your configuration is doing, and modify it to suit your needs.
 
@@ -92,6 +93,8 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+
+vim.opt.guicursor = ''
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -625,7 +628,26 @@ require('lazy').setup {
           end
         end,
       })
+      --TODO:
 
+      local function hide_diagnostics()
+        vim.diagnostic.config { -- https://neovim.io/doc/user/diagnostic.html
+          virtual_text = false,
+          signs = false,
+          underline = false,
+        }
+      end
+
+      local function show_diagnostics()
+        vim.diagnostic.config {
+          virtual_text = true,
+          signs = true,
+          underline = true,
+        }
+      end
+
+      vim.keymap.set('n', '<leader>dh', hide_diagnostics)
+      vim.keymap.set('n', '<leader>ds', show_diagnostics)
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
@@ -673,7 +695,7 @@ require('lazy').setup {
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        pyright = {},
+        -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -756,7 +778,7 @@ require('lazy').setup {
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, html = true, python = true }
+        local disable_filetypes = { c = true, cpp = true, html = true, python = true, typescript = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -986,7 +1008,7 @@ require('lazy').setup {
   -- require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.alpha',
-  require 'kickstart.plugins.gruvbox',
+  require 'kickstart.plugins.lazygit',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
