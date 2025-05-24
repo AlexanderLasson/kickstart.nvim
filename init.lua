@@ -153,7 +153,15 @@ vim.o.splitbelow = true
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.fillchars = { eob = ' ' }
+
+-- tab settings
+vim.o.tabstop = 2 -- Number of spaces a <Tab> in the file counts for
+vim.o.shiftwidth = 2 -- Number of spaces to use for each step of (auto)indent
+vim.o.softtabstop = 2 -- Number of spaces inserted when pressing <Tab>
+vim.o.expandtab = true -- Use spaces instead of tabs
+
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
@@ -174,6 +182,18 @@ vim.o.confirm = true
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- neotree map
+vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { noremap = true, silent = true })
+
+-- Reveal current file in Neo-tree
+vim.keymap.set('n', '<leader>o', ':Neotree reveal<CR>', { silent = true })
+
+-- Open Neo-tree in floating window
+vim.keymap.set('n', '<leader>nf', ':Neotree float<CR>', { silent = true })
+
+-- Open Neo-tree in left split (default behavior)
+vim.keymap.set('n', '<leader>nl', ':Neotree left<CR>', { silent = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -646,8 +666,8 @@ require('lazy').setup {
         }
       end
 
-      vim.keymap.set('n', '<leader>dh', hide_diagnostics)
-      vim.keymap.set('n', '<leader>ds', show_diagnostics)
+      vim.keymap.set('n', '<leader>dh', hide_diagnostics, { desc = 'Hide diagnostics' })
+      vim.keymap.set('n', '<leader>ds', show_diagnostics, { desc = 'Show diagnostics' })
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
@@ -897,31 +917,34 @@ require('lazy').setup {
       signature = { enabled = true },
     },
   },
-
   {
-    'rose-pine/neovim',
-    name = 'rose-pine',
+    'ellisonleao/gruvbox.nvim',
+    name = 'gruvbox',
     config = function()
-      require('rose-pine').setup {
-
-        variant = 'moon', -- auto, main, moon, or dawn
-        dark_variant = 'moon', -- main, moon, or dawn
-        dim_inactive_windows = false,
-        extend_background_behind_borders = true,
-
-        enable = {
-          terminal = true,
-          legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-          migrations = true, -- Handle deprecated options automatically
+      require('gruvbox').setup {
+        terminal_colors = true,
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = true,
+          emphasis = false,
+          comments = false,
+          operators = false,
+          folds = false,
         },
-
-        styles = {
-          bold = false,
-          italic = false,
-          transparency = true,
-        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        inverse = true,
+        contrast = 'soft', -- "hard", "soft", or ""
+        palette_overrides = {},
+        overrides = {},
+        dim_inactive = false,
+        transparent_mode = true,
       }
-      vim.cmd 'colorscheme rose-pine '
+      vim.cmd 'colorscheme gruvbox'
     end,
   },
 
@@ -1005,7 +1028,7 @@ require('lazy').setup {
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.oil',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.alpha',
   require 'kickstart.plugins.lazygit',
