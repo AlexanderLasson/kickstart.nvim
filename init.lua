@@ -799,13 +799,18 @@ require('lazy').setup {
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true, html = true, python = true, typescript = true }
+
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
+          return nil
+          -- 
+          --   {
+          --   timeout_ms = 500,
+          --   lsp_format = 'fallback',
+          --   }
+          --
+          --
         end
       end,
       formatters_by_ft = {
@@ -917,34 +922,13 @@ require('lazy').setup {
       signature = { enabled = true },
     },
   },
+
   {
-    'ellisonleao/gruvbox.nvim',
-    name = 'gruvbox',
+    'sainnhe/gruvbox-material',
+    name = 'gruvbox-material',
     config = function()
-      require('gruvbox').setup {
-        terminal_colors = true,
-        undercurl = true,
-        underline = true,
-        bold = true,
-        italic = {
-          strings = true,
-          emphasis = false,
-          comments = false,
-          operators = false,
-          folds = false,
-        },
-        strikethrough = true,
-        invert_selection = false,
-        invert_signs = false,
-        invert_tabline = false,
-        inverse = true,
-        contrast = 'soft', -- "hard", "soft", or ""
-        palette_overrides = {},
-        overrides = {},
-        dim_inactive = false,
-        transparent_mode = true,
-      }
-      vim.cmd 'colorscheme gruvbox'
+      vim.g.gruvbox_material_transparent_background = 1
+      vim.cmd 'colorscheme gruvbox-material'
     end,
   },
 
@@ -1024,7 +1008,7 @@ require('lazy').setup {
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
+  -- require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.oil',
@@ -1032,6 +1016,7 @@ require('lazy').setup {
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.alpha',
   require 'kickstart.plugins.lazygit',
+  require 'kickstart.plugins.harpoon',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
