@@ -1008,7 +1008,6 @@ require('lazy').setup {
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.oil',
@@ -1017,6 +1016,7 @@ require('lazy').setup {
   require 'kickstart.plugins.alpha',
   require 'kickstart.plugins.lazygit',
   require 'kickstart.plugins.harpoon',
+  -- require 'kickstart.plugins.indent_line',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
