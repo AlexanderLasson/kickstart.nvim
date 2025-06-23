@@ -25,12 +25,7 @@ return {
       [[     ⠀⠀⠀⠀⠀⠀⠀⣀⣀⠀⢹⠀⠀⢻⠀⠀⣼⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠀]],
       [[     ⠀⠀⠀⠀⢠⠾⠋⠁⠀⠩⠏⠁⠀⡯⠀⠹⣧⣄⡠⠇⠀⠀⠀⠀⠀⠀⠀⠀]],
       [[     ⠀⠀⠀⠀⠉⠙⠂⠤⠤⠄⣀⣀⣀⡞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
-
-
-
     }
-
-
     theta.buttons.val = {} -- No buttons for minimalism
 
     require('alpha').setup(theta.config)
