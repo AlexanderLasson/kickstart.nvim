@@ -1,7 +1,3 @@
--- Adds git related signs to the gutter, as well as utilities for managing changes
--- NOTE: gitsigns is already included in init.lua but contains only the base
--- config. This will add also the recommended keymaps.
-
 return {
   {
     'lewis6991/gitsigns.nvim',
@@ -9,11 +5,49 @@ return {
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
 
+
         local function map(mode, l, r, opts)
           opts = opts or {}
           opts.buffer = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
+        signs = {
+          add = { text = '│' },
+          change = { text = '│' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '~' },
+          untracked = { text = '┆' },
+        }
+        signs_staged = {
+          add = { text = '│' },
+          change = { text = '│' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '~' },
+          untracked = { text = '┆' },
+        },
+
+        gitsigns.setup {
+          signs = signs,
+          signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+          numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+          linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+          word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+          current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+          current_line_blame_opts = {
+            virt_text_pos = 'eol',
+            delay = 1000,
+            ignore_whitespace = false,
+          },
+          preview_config = {
+            border = 'single',
+            style = 'minimal',
+            relative = 'cursor',
+            row = 0,
+            col = 1,
+          },
+        }
 
         -- Navigation
         map('n', ']c', function()

@@ -1,5 +1,4 @@
 -- General Nvim Settings
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
@@ -8,17 +7,14 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
 vim.o.showmode = false
-
 vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
 end)
-
-
 vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.o.signcolumn = 'no'
+vim.o.signcolumn = 'yes'
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.splitright = true
@@ -691,7 +687,7 @@ require('lazy').setup {
     },
   },
 
-  --FIXME:
+  -- colorscheme
   {
     'sainnhe/gruvbox-material',
     name = 'gruvbox-material',
@@ -701,8 +697,6 @@ require('lazy').setup {
     end,
   },
 
-
-  -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
@@ -736,9 +730,6 @@ require('lazy').setup {
       statusline.section_location = function()
         return '%2l:%-2v'
       end
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
   { -- Highlight, edit, and navigate code
@@ -752,9 +743,6 @@ require('lazy').setup {
       auto_install = true,
       highlight = {
         enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
@@ -762,9 +750,6 @@ require('lazy').setup {
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
   require 'kickstart.plugins.debug',
@@ -778,10 +763,7 @@ require('lazy').setup {
   require 'kickstart.plugins.harpoon',
   require 'kickstart.plugins.obsidian',
   require 'kickstart.plugins.fterm',
-  require 'kickstart.plugins.copilot',
 
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   -- { import = 'custom.plugins' },
@@ -805,6 +787,3 @@ require('lazy').setup {
     },
   },
 }
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
