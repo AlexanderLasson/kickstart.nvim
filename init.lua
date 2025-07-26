@@ -30,9 +30,17 @@ vim.o.inccommand = 'split'
 vim.o.cursorline = false
 vim.o.scrolloff = 10
 vim.o.confirm = true
+vim.o.cmdheight = 0
 vim.o.conceallevel = 2
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,a:blinkon0"
--- [[ Basic Keymaps ]]
+vim.o.laststatus = 0
+
+
+
+
+-- Obsidian Today keymap
+vim.keymap.set('n', '<leader>dn', ':ObsidianToday<CR>', { desc= 'Obsidian Today Note (in obsidan root)' })
+
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- neotree map
@@ -46,6 +54,7 @@ vim.keymap.set('n', '<leader>nf', ':Neotree float<CR>', { silent = true })
 
 -- Open Neo-tree in left split (default behavior)
 vim.keymap.set('n', '<leader>nl', ':Neotree left<CR>', { silent = true })
+vim.keymap.set('n', '<leader>nb', ':Neotree bottom<CR>', { silent = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -55,6 +64,7 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -683,7 +693,7 @@ require('lazy').setup {
   ft = { 'html', 'css', 'scss', 'javascriptreact', 'typescriptreact' },
   config = function()
     require('lspconfig').emmet_ls.setup({
-      filetypes = { 'html', 'css', 'scss', 'javascriptreact', 'typescriptreact' },
+      filetypes = { 'html', 'css', 'scss', 'javascriptreact', 'typescriptreact',},
       init_options = {
         html = {
           options = {
@@ -772,6 +782,7 @@ require('lazy').setup {
   require 'kickstart.plugins.harpoon',
   require 'kickstart.plugins.obsidian',
   require 'kickstart.plugins.fterm',
+  require 'kickstart.plugins.bread',
 
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.

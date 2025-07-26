@@ -12,6 +12,10 @@ return {
         name = "Obsidian Vault",
         path = "~/Documents/Obsidian Vault/",
       },
+      },
+    daily_notes = {
+        folder = "daily/",
+        date_format = "%Y/%m/%Y-%m-%d-%A"
     },
   },
 }
