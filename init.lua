@@ -225,7 +225,6 @@ require('lazy').setup {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
-      -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
@@ -426,10 +425,9 @@ require('lazy').setup {
           end
         end,
       })
-      --TODO:
 
       local function hide_diagnostics()
-        vim.diagnostic.config { -- https://neovim.io/doc/user/diagnostic.html
+        vim.diagnostic.config {
           virtual_text = false,
           signs = false,
           underline = false,
@@ -493,7 +491,7 @@ require('lazy').setup {
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
