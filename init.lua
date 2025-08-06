@@ -34,8 +34,7 @@ vim.o.cmdheight = 0
 vim.o.conceallevel = 2
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,a:blinkon0"
 vim.o.laststatus = 0
-
-
+vim.opt.termguicolors = true -- for colorizer fix
 
 
 -- Obsidian Today keymap
@@ -606,9 +605,6 @@ require('lazy').setup {
         'L3MON4D3/LuaSnip',
         version = '2.*',
         build = (function()
-          -- Build Step is needed for regex support in snippets.
-          -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
           if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
             return
           end
@@ -651,7 +647,7 @@ require('lazy').setup {
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'enter',
+        preset = 'super-tab',
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -702,7 +698,6 @@ require('lazy').setup {
     })
   end,
 },
-
 
   -- colorscheme
   {
@@ -781,6 +776,8 @@ require('lazy').setup {
   require 'kickstart.plugins.obsidian',
   require 'kickstart.plugins.fterm',
   require 'kickstart.plugins.bread',
+  require 'kickstart.plugins.colorizer',
+  require 'kickstart.plugins.surround',
 
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
